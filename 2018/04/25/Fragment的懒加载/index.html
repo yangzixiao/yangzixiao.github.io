@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="杨子晓的博客">
 <meta property="og:description" content="原因描述只有在Fragment第一次展现给用户时，加载数据 思路 从Fragment的生命周期和setUserVisibleHint(boolean isVisibleToUser)方法入手 Fragment生命周期(自行了解) Fragment每次展示给用户时都会调用setUserVisibleHint(boolean isVisibleToUser)方法  实现 参数   1private b">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-26T02:51:43.117Z">
+<meta property="og:updated_time" content="2018-04-27T03:31:01.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fragment的懒加载">
 <meta name="twitter:description" content="原因描述只有在Fragment第一次展现给用户时，加载数据 思路 从Fragment的生命周期和setUserVisibleHint(boolean isVisibleToUser)方法入手 Fragment生命周期(自行了解) Fragment每次展示给用户时都会调用setUserVisibleHint(boolean isVisibleToUser)方法  实现 参数   1private b">
@@ -337,6 +337,7 @@
 </ol>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>要设置 setOffscreenPageLimit(int limit)方法，避免Fragment的重复创建</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5adcb0e36fb9a07aa7673fbc" target="_blank" rel="noopener">1. 多层嵌套后的 Fragment 懒加载实现</a></p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://github.com/yangzixiao/Demos/blob/master/commonLibrary/src/main/java/com/yzx/commonlibrary/base/LazyFragment.java" target="_blank" rel="noopener">源码</a></p>
 
       
     </div>
@@ -497,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">2.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">5.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">2.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">5.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">7.</span> <span class="nav-text">链接</span></a></li></ol></div>
             
 
           </div>
