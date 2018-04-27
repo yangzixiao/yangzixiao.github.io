@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="描述右边是箭头点击自动收起展开的自定义布局 思路 继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化） 1234567891011121314151617private void initView(Context context) &amp;#123;       textView = new TextView(context);       textVi">
+<meta name="description" content="预览 描述右边是箭头点击自动收起展开的自定义布局 思路 继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化） 1234567891011121314151617private void initView(Context context) &amp;#123;       textView = new TextView(context);       tex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可展开收缩的View">
 <meta property="og:url" content="http://yoursite.com/2018/04/24/可展开收缩的View/index.html">
 <meta property="og:site_name" content="杨子晓的博客">
-<meta property="og:description" content="描述右边是箭头点击自动收起展开的自定义布局 思路 继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化） 1234567891011121314151617private void initView(Context context) &amp;#123;       textView = new TextView(context);       textVi">
+<meta property="og:description" content="预览 描述右边是箭头点击自动收起展开的自定义布局 思路 继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化） 1234567891011121314151617private void initView(Context context) &amp;#123;       textView = new TextView(context);       tex">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-27T03:29:58.411Z">
+<meta property="og:image" content="https://github.com/yangzixiao/Demos/blob/master/art/ExpansionLayout.gif">
+<meta property="og:updated_time" content="2018-04-27T06:29:46.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="可展开收缩的View">
-<meta name="twitter:description" content="描述右边是箭头点击自动收起展开的自定义布局 思路 继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化） 1234567891011121314151617private void initView(Context context) &amp;#123;       textView = new TextView(context);       textVi">
+<meta name="twitter:description" content="预览 描述右边是箭头点击自动收起展开的自定义布局 思路 继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化） 1234567891011121314151617private void initView(Context context) &amp;#123;       textView = new TextView(context);       tex">
+<meta name="twitter:image" content="https://github.com/yangzixiao/Demos/blob/master/art/ExpansionLayout.gif">
 
 
 
@@ -309,7 +311,8 @@
       
 
       
-        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>右边是箭头点击自动收起展开的自定义布局</p>
+        <h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://github.com/yangzixiao/Demos/blob/master/art/ExpansionLayout.gif" alt="ExpansionLayout"></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>右边是箭头点击自动收起展开的自定义布局</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
 <li><p>继承LinearLayout，左边添加一个TextView（宽度权重为1），右边是一个图片（为了美化）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">private void initView(Context context) &#123;</span><br><span class="line">       textView = new TextView(context);</span><br><span class="line">       textView.setLayoutParams(new LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));</span><br><span class="line">       textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);</span><br><span class="line">       textView.setTextColor(textColor);</span><br><span class="line">       setText(text);</span><br><span class="line">       textView.setEllipsize(TextUtils.TruncateAt.END);</span><br><span class="line">       textView.setOnClickListener(this);</span><br><span class="line">       this.addView(textView, 0);</span><br><span class="line">       imageView = new ImageView(context);</span><br><span class="line">       imageView.setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));</span><br><span class="line">       imageView.setImageResource(expansionIcon);</span><br><span class="line">       imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);</span><br><span class="line">       imageView.setPadding(DensityUtils.dip2px(context, space), 0, 0, 0);</span><br><span class="line">       imageView.setOnClickListener(this);</span><br><span class="line">       this.addView(imageView, 1);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -492,7 +495,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">3.</span> <span class="nav-text">链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预览"><span class="nav-number">1.</span> <span class="nav-text">预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">2.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">4.</span> <span class="nav-text">链接</span></a></li></ol></div>
             
 
           </div>
