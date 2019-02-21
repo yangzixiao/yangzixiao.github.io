@@ -322,10 +322,12 @@
 <li><p>按home键,再重新启动</p>
 <p>onPause - onStop<br>onRestart - onStart - onResume</p>
 </li>
-<li><p>开启新的Activity,再返回</p>
-<p>该activity onPause - onStop - 新Activity onCreate - onStart - onResume - onPause - onStop - onDestory - 该Activity onRestart - onStart - onResume</p>
+<li><p>开启新的Activity</p>
+<p>该Activity onPause - 新Activity onCreate - onStart - onResume - 该Activity onStop</p>
 </li>
-<li><p>如果Activity配置configChanges orientation|screenSize<br>activity屏幕旋转时则不会重建，而是会调用onConfigurationChanged方法</p>
+<li><p>如果Activity配置configChanges orientation|screenSize<br>activity屏幕旋转时则不会重建，而是会调用onConfigurationChanged方法<br>不配置的话 系统会自动调用onSaveInstanceState保存当前Activity数据、状态，在onRestoreInstanceState方法中恢复数据</p>
+</li>
+<li><p>onRestoreInstanceState调用时机<br>onStart 与 onResume之间</p>
 </li>
 </ol>
 <h4 id="2-启动模式"><a href="#2-启动模式" class="headerlink" title="2. 启动模式"></a>2. 启动模式</h4><ol>
