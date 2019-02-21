@@ -319,9 +319,13 @@
 <li><p>在后台时被杀死重新打开时</p>
 <p>会重新创建activity，重走生命周期</p>
 </li>
-<li><p>按home键,再重新启动<br>onPause - onStop<br>onRestart - onStart - onResume</p>
+<li><p>按home键,再重新启动</p>
+<p>onPause - onStop<br>onRestart - onStart - onResume</p>
 </li>
-<li><p>开启新的Activity,再返回<br>该activity onPause - onStop - 新Activity onCreate - onStart - onResume - onPause - onStop - onDestory - 该Activity onRestart - onStart - onResume </p>
+<li><p>开启新的Activity,再返回</p>
+<p>该activity onPause - onStop - 新Activity onCreate - onStart - onResume - onPause - onStop - onDestory - 该Activity onRestart - onStart - onResume</p>
+</li>
+<li><p>如果Activity配置configChanges orientation|screenSize<br>activity屏幕旋转时则不会重建，而是会调用onConfigurationChanged方法</p>
 </li>
 </ol>
 <h4 id="2-启动模式"><a href="#2-启动模式" class="headerlink" title="2. 启动模式"></a>2. 启动模式</h4><ol>

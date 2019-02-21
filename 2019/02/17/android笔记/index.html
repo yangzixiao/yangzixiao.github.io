@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Activity1. 生命周期  在后台时被杀死重新打开时 会重新创建activity，重走生命周期  按home键,再重新启动onPause - onStoponRestart - onStart - onResume  开启新的Activity,再返回该activity onPause - onStop - 新Activity onCreate - onStart - onResume -">
+<meta name="description" content="Activity1. 生命周期  在后台时被杀死重新打开时 会重新创建activity，重走生命周期  按home键,再重新启动 onPause - onStoponRestart - onStart - onResume  开启新的Activity,再返回 该activity onPause - onStop - 新Activity onCreate - onStart - onResume">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android笔记">
 <meta property="og:url" content="http://yoursite.com/2019/02/17/android笔记/index.html">
 <meta property="og:site_name" content="杨子晓的博客">
-<meta property="og:description" content="Activity1. 生命周期  在后台时被杀死重新打开时 会重新创建activity，重走生命周期  按home键,再重新启动onPause - onStoponRestart - onStart - onResume  开启新的Activity,再返回该activity onPause - onStop - 新Activity onCreate - onStart - onResume -">
+<meta property="og:description" content="Activity1. 生命周期  在后台时被杀死重新打开时 会重新创建activity，重走生命周期  按home键,再重新启动 onPause - onStoponRestart - onStart - onResume  开启新的Activity,再返回 该activity onPause - onStop - 新Activity onCreate - onStart - onResume">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/682504-1405607172778d9b.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/545/format/webp">
-<meta property="og:updated_time" content="2019-02-21T01:52:52.353Z">
+<meta property="og:updated_time" content="2019-02-21T02:15:21.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android笔记">
-<meta name="twitter:description" content="Activity1. 生命周期  在后台时被杀死重新打开时 会重新创建activity，重走生命周期  按home键,再重新启动onPause - onStoponRestart - onStart - onResume  开启新的Activity,再返回该activity onPause - onStop - 新Activity onCreate - onStart - onResume -">
+<meta name="twitter:description" content="Activity1. 生命周期  在后台时被杀死重新打开时 会重新创建activity，重走生命周期  按home键,再重新启动 onPause - onStoponRestart - onStart - onResume  开启新的Activity,再返回 该activity onPause - onStop - 新Activity onCreate - onStart - onResume">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/682504-1405607172778d9b.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/545/format/webp">
 
 
@@ -317,9 +317,13 @@
 <li><p>在后台时被杀死重新打开时</p>
 <p>会重新创建activity，重走生命周期</p>
 </li>
-<li><p>按home键,再重新启动<br>onPause - onStop<br>onRestart - onStart - onResume</p>
+<li><p>按home键,再重新启动</p>
+<p>onPause - onStop<br>onRestart - onStart - onResume</p>
 </li>
-<li><p>开启新的Activity,再返回<br>该activity onPause - onStop - 新Activity onCreate - onStart - onResume - onPause - onStop - onDestory - 该Activity onRestart - onStart - onResume </p>
+<li><p>开启新的Activity,再返回</p>
+<p>该activity onPause - onStop - 新Activity onCreate - onStart - onResume - onPause - onStop - onDestory - 该Activity onRestart - onStart - onResume</p>
+</li>
+<li><p>如果Activity配置configChanges orientation|screenSize<br>activity屏幕旋转时则不会重建，而是会调用onConfigurationChanged方法</p>
 </li>
 </ol>
 <h4 id="2-启动模式"><a href="#2-启动模式" class="headerlink" title="2. 启动模式"></a>2. 启动模式</h4><ol>
