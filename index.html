@@ -515,7 +515,9 @@ return true;
 <h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h4 id="1-流程"><a href="#1-流程" class="headerlink" title="1. 流程"></a>1. 流程</h4><p>  创建Handler对象的时候，会初始化Looper对象，Looper对象里维护了一个MessageQueen。</p>
 <p>  Handler发送消息的时候，会把消息插入到Looper里维护的MessagerQueen里，在Handler发送消息的时候，会对Message对象做些赋值处理，例如Message的Target就是发送消息的Handler，再者就是携带一些数据之类的</p>
 <p>  而Looper loop()方法会不停的从MessageQueen里拿到Message,Message通过Message的target对象（也就是Handler），调用Handler的dispatchMessage()方法处理Message，dispatchMessage()方法在message的 callback(也就是Runnable,这其实是Handler发送消息的另种方式，Handler的post()方法)对象为空的时候，会调用Handler的handMessage()方法，也就是我们常用的处理Message信息的方法。</p>
-
+<hr>
+<h2 id="View的绘制"><a href="#View的绘制" class="headerlink" title="  View的绘制"></a>  View的绘制</h2><h4 id="1-Application启动"><a href="#1-Application启动" class="headerlink" title="1. Application启动"></a>1. Application启动</h4><p>  用户在Launcher进程(也就是桌面)点击icon，通知SystemService开启进程，SystemService通知Zygoto进程fork出新的App进程，App进程通知attach到SystemService，SystemService绑定完App进程等一系列操作后，通知App进程，就完成了App进程的启动</p>
+<h4 id="2-Activity、Window与View之间的关系"><a href="#2-Activity、Window与View之间的关系" class="headerlink" title="2. Activity、Window与View之间的关系"></a>2. Activity、Window与View之间的关系</h4>
           
         
       
