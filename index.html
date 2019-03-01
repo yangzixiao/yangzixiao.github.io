@@ -487,12 +487,16 @@ return true;
 <h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h4 id="1-概念："><a href="#1-概念：" class="headerlink" title="1. 概念："></a>1. 概念：</h4><p>生命周期长的对象持有生命周期短的对象导致内存无法回收</p>
 <h4 id="2-常见内存泄漏问题"><a href="#2-常见内存泄漏问题" class="headerlink" title="2. 常见内存泄漏问题"></a>2. 常见内存泄漏问题</h4><ol>
 <li><p>非静态内部类、匿名内部类</p>
-<p>原因：非静态内部类会引用外部类而且生命周期比外部类长</p>
-<p>解决方案：内部类静态化，静态内部类不持有外部类，生命周期与App一致</p>
+<p>原因：非静态内部类会引用外部类而且生命周期比外部类长<br>解决方案：内部类静态化，静态内部类不持有外部类，生命周期与App一致</p>
+</li>
+<li><p>单例模式</p>
+<p>原因：单例的生命周期跟App相同<br>解决方案：context最好用Application</p>
+</li>
+<li><p>Handler</p>
+<p>原因：activity在关闭的时候可能会有延迟消息持有Activity<br>解决方案：利用静态内部类和弱引用，再者就是在activity关闭的时候remove掉所有的消息<br>注意：要做activity为空判断，否则可能会空指针</p>
 </li>
 <li><p>list集合内存泄漏</p>
-<p>list持有对象未及时释放</p>
-<p>解决方案：在不用的地方list clear掉，置空</p>
+<p>list持有对象未及时释放<br>解决方案：在不用的地方list clear掉，置空</p>
 </li>
 <li><p>部分资源用完未关闭</p>
 <ol>
@@ -507,6 +511,10 @@ return true;
 <li>lint</li>
 <li>LeakCanary</li>
 </ol>
+<hr>
+<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h4 id="1-流程"><a href="#1-流程" class="headerlink" title="1. 流程"></a>1. 流程</h4><p>  创建Handler对象的时候，会初始化Looper对象，Looper对象里维护了一个MessageQueen。</p>
+<p>  Handler发送消息的时候，会把消息插入到Looper里维护的MessagerQueen里，在Handler发送消息的时候，会对Message对象做些赋值处理，例如Message的Target就是发送消息的Handler，再者就是携带一些数据之类的</p>
+<p>  而Looper loop()方法会不停的从MessageQueen里拿到Message,Message通过Message的target对象（也就是Handler），调用Handler的dispatchMessage()方法处理Message，dispatchMessage()方法在message的 callback(也就是Runnable,这其实是Handler发送消息的另种方式，Handler的post()方法)对象为空的时候，会调用Handler的handMessage()方法，也就是我们常用的处理Message信息的方法。</p>
 
           
         
