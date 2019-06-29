@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="View的事件体系1. 基础知识1.1 View的定义1.2 View的位置参数  View的位置由其四个顶点决定：top,left,right,bottom  注意：这四个顶点是相对于父布局的  3.0开始，增加了x,y,translationX,translationY几个参数  其中x,y指View的左上角坐标  translationX,translationY指View相对于父布局的偏">
+<meta name="description" content="第一章：Activity的生命周期和启动模式1. 生命周期1.1 正常情况下onCreate() -&amp;gt; onStart() -&amp;gt; onResume() -&amp;gt; onPause() -&amp;gt; onStop() -&amp;gt; onDestroy()  onRestart()的调用时机： 1. 开启新Activity又回到旧Activity,旧Activity会调用 2. 屏幕息屏亮屏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开发与探索笔记">
 <meta property="og:url" content="http://yoursite.com/2018/05/24/开发与探索笔记/index.html">
 <meta property="og:site_name" content="杨子晓的博客">
-<meta property="og:description" content="View的事件体系1. 基础知识1.1 View的定义1.2 View的位置参数  View的位置由其四个顶点决定：top,left,right,bottom  注意：这四个顶点是相对于父布局的  3.0开始，增加了x,y,translationX,translationY几个参数  其中x,y指View的左上角坐标  translationX,translationY指View相对于父布局的偏">
+<meta property="og:description" content="第一章：Activity的生命周期和启动模式1. 生命周期1.1 正常情况下onCreate() -&amp;gt; onStart() -&amp;gt; onResume() -&amp;gt; onPause() -&amp;gt; onStop() -&amp;gt; onDestroy()  onRestart()的调用时机： 1. 开启新Activity又回到旧Activity,旧Activity会调用 2. 屏幕息屏亮屏">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-09T06:24:56.490Z">
+<meta property="og:updated_time" content="2019-06-18T09:30:17.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开发与探索笔记">
-<meta name="twitter:description" content="View的事件体系1. 基础知识1.1 View的定义1.2 View的位置参数  View的位置由其四个顶点决定：top,left,right,bottom  注意：这四个顶点是相对于父布局的  3.0开始，增加了x,y,translationX,translationY几个参数  其中x,y指View的左上角坐标  translationX,translationY指View相对于父布局的偏">
+<meta name="twitter:description" content="第一章：Activity的生命周期和启动模式1. 生命周期1.1 正常情况下onCreate() -&amp;gt; onStart() -&amp;gt; onResume() -&amp;gt; onPause() -&amp;gt; onStop() -&amp;gt; onDestroy()  onRestart()的调用时机： 1. 开启新Activity又回到旧Activity,旧Activity会调用 2. 屏幕息屏亮屏">
 
 
 
@@ -310,25 +310,92 @@
 
       
         <hr>
-<h2 id="View的事件体系"><a href="#View的事件体系" class="headerlink" title="View的事件体系"></a>View的事件体系</h2><h5 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h5><h6 id="1-1-View的定义"><a href="#1-1-View的定义" class="headerlink" title="1.1 View的定义"></a>1.1 View的定义</h6><h6 id="1-2-View的位置参数"><a href="#1-2-View的位置参数" class="headerlink" title="1.2 View的位置参数"></a>1.2 View的位置参数</h6><p>  View的位置由其四个顶点决定：top,left,right,bottom<br>  注意：这四个顶点是相对于父布局的<br>  3.0开始，增加了x,y,translationX,translationY几个参数<br>  其中x,y指View的左上角坐标<br>  translationX,translationY指View相对于父布局的偏移量</p>
-<p>  几者的换算关系是：<br>  x = left + translationX<br>  y = top + translationY</p>
-<p>  注意：在平移过程中，top,left,right,bottom是View的原始位置，值是不会改变的，x,y则是随着translationX,translationY的改变而改变的</p>
-<h6 id="1-3-MotionEvent"><a href="#1-3-MotionEvent" class="headerlink" title="1.3 MotionEvent"></a>1.3 MotionEvent</h6><p>  手势事件包含：<br>  ACTION_DOWN,ACTION_MOVE,ACTION_UP等<br>  获取当前时间的坐标方式：<br>  getX()/getRawX(),getX()/getRawX()<br>  getX(),getY()获取的是相对于该View的坐标<br>  getRawX(),getRawX()获取的是相对于屏幕的坐标</p>
-<h6 id="1-4-TouchSlop"><a href="#1-4-TouchSlop" class="headerlink" title="1.4 TouchSlop"></a>1.4 TouchSlop</h6><p>系统所能识别的最小滑动距离<br>获取方式：ViewConfiguration.get(context).getScaledTouchSlop();</p>
-<h5 id="2-View的滑动"><a href="#2-View的滑动" class="headerlink" title="2. View的滑动"></a>2. View的滑动</h5><h5 id="3-View事件分发机制"><a href="#3-View事件分发机制" class="headerlink" title="3. View事件分发机制"></a>3. View事件分发机制</h5><p>3.1 主要方法</p>
-<p>  dispatchTouchEvent(MotionEvent ev)<br>  分发–&gt;处理点击时间的分发</p>
-<p>  onInterceptTouchEvent(MotionEvent ev)<br>  拦截–&gt;确定当前View是否拦截事件</p>
-<p>  onTouchEvent(MotionEvent ev)<br>  点击–&gt;处理事件</p>
-<p>3.2 三者关系</p>
-<p>  dispatchTouchEvent(MotionEvent ev){<br>    boolean consume = false;<br>    if(onInterceptTouchEvent(MotionEvent ev)){<br>      consume = onTouchEvent(MotionEvent ev)<br>    }else{<br>      consume = child.dispatchTouchEvent(MotionEvent ev);<br>    }<br>    return consume;<br>  }</p>
-<p>  当前View调用onDispatchTouchEvent(MotionEvent ev)分发事件，然后调用onInterceptTouchEvent(MotionEvent ev),如果返回true，说明当前View要消费事件，则会调用当前View的OnTouchEvent(MotionEvent ev)方法处理事件。否则则交给子View处理，如果子View处理，则消费掉，如果子View不消费，返回false,交给更上级处理。</p>
-<p>3.3 一些问题与注意事项</p>
-<p>  3.3.1 Activity、Window、View三者事件传递关系</p>
-<pre><code>Activity--&gt;Window--&gt;View
-</code></pre><p>  3.3.2 OnTouchEvent(MotionEvent ev)与OnTouchListener(MotionEvent ev)的优先级</p>
-<pre><code>如果设置了OnTouchListener(MotionEvent ev)并返回true，则不会调用OnTouchEvent(MotionEvent ev)，所以OnTouchListener(MotionEvent ev)优先级更高
-</code></pre><p>  3.3.3</p>
-<h5 id="4-源码分析"><a href="#4-源码分析" class="headerlink" title="4 源码分析"></a>4 源码分析</h5><p>4.1 点击事件传递顺序</p>
+<h2 id="第一章：Activity的生命周期和启动模式"><a href="#第一章：Activity的生命周期和启动模式" class="headerlink" title="第一章：Activity的生命周期和启动模式"></a>第一章：Activity的生命周期和启动模式</h2><h4 id="1-生命周期"><a href="#1-生命周期" class="headerlink" title="1. 生命周期"></a>1. 生命周期</h4><h5 id="1-1-正常情况下"><a href="#1-1-正常情况下" class="headerlink" title="1.1 正常情况下"></a>1.1 正常情况下</h5><pre><code>onCreate() -&gt; onStart() -&gt; onResume() -&gt; onPause() -&gt; onStop() -&gt; onDestroy()
+
+onRestart()的调用时机：
+1. 开启新Activity又回到旧Activity,旧Activity会调用
+2. 屏幕息屏亮屏切换亮屏时
+
+打开新Activity时，旧Activity的onPause()和新Activity的onResume()谁先调用
+旧Activity的onPause()先调用
+</code></pre><h5 id="1-2-异常情况下"><a href="#1-2-异常情况下" class="headerlink" title="1.2 异常情况下"></a>1.2 异常情况下</h5><pre><code>1. 横竖屏切换
+    1. 未配置屏幕横竖屏切换会重新创建
+    onPause() -&gt; onSaveInstanceState() -&gt; onStop() -&gt; onDestroy() -&gt; onCreate() -&gt; onStart() -&gt; onRestoreInstanceState() -&gt;  onResume()
+
+    onSaveInstanceState()和onRestInstanceState()是用来保存和恢复数据
+    onSaveInstanceState()和onRestInstanceState()调用时机
+    onSaveInstanceState()在onStop()之前调用
+    onRestInstanceState()在onStart()之后调用
+
+    2. 配置屏幕横竖屏切换不会重新创建
+    android:configChanges=&quot;orientation|keyboardHidden|screenSize&quot;
+    不会重建Activity，切换时会调用OnConfigurationChanged()方法
+
+    注意：这个属性在低版本上是可以起作用。在android 4.0 以上不起作用，必须要加上screenSize，即android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+
+2. 内存不足时
+
+    如果内存不足，会调用onSaveInstanceState()和onRestInstanceState()是保存和恢复数据
+</code></pre><h4 id="2-启动模式"><a href="#2-启动模式" class="headerlink" title="2. 启动模式"></a>2. 启动模式</h4><pre><code>standard
+标准模式：默认启动模式，开启一个Activity创建一个实例
+singleTop
+栈顶复用模式：当栈顶的Activity与要启动的Activity一样时，复用该Activity并调用onNewIntent方法
+singleTask（默认具有ClearTop效果）
+单任务栈模式：就是任务栈内只存在一个Activity
+singleInstance
+单实例模式：就是一个Activity实例单独占用一个任务栈
+</code></pre><hr>
+<h2 id="View的事件体系"><a href="#View的事件体系" class="headerlink" title="View的事件体系"></a>View的事件体系</h2><h5 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h5><h6 id="1-1-View的定义"><a href="#1-1-View的定义" class="headerlink" title="1.1 View的定义"></a>1.1 View的定义</h6><h6 id="1-2-View的位置参数"><a href="#1-2-View的位置参数" class="headerlink" title="1.2 View的位置参数"></a>1.2 View的位置参数</h6><pre><code>View的位置由其四个顶点决定：top,left,right,bottom
+注意：这四个顶点是相对于父布局的
+3.0开始，增加了x,y,translationX,translationY几个参数
+其中x,y指View的左上角坐标
+translationX,translationY指View相对于父布局的偏移量
+
+几者的换算关系是：
+x = left + translationX
+y = top + translationY
+
+注意：在平移过程中，top,left,right,bottom是View的原始位置，值是不会改变的，x,y则是随着translationX,translationY的改变而改变的
+</code></pre><h6 id="1-3-MotionEvent"><a href="#1-3-MotionEvent" class="headerlink" title="1.3 MotionEvent"></a>1.3 MotionEvent</h6><pre><code>手势事件包含：
+ACTION_DOWN,ACTION_MOVE,ACTION_UP等
+获取当前时间的坐标方式：
+getX()/getRawX(),getX()/getRawX()
+getX(),getY()获取的是相对于该View的坐标
+getRawX(),getRawX()获取的是相对于屏幕的坐标
+</code></pre><h6 id="1-4-TouchSlop"><a href="#1-4-TouchSlop" class="headerlink" title="1.4 TouchSlop"></a>1.4 TouchSlop</h6><pre><code>系统所能识别的最小滑动距离
+获取方式：ViewConfiguration.get(context).getScaledTouchSlop();
+</code></pre><h5 id="2-View的滑动"><a href="#2-View的滑动" class="headerlink" title="2. View的滑动"></a>2. View的滑动</h5><h5 id="3-View事件分发机制"><a href="#3-View事件分发机制" class="headerlink" title="3. View事件分发机制"></a>3. View事件分发机制</h5><p>3.1 主要方法</p>
+<pre><code>dispatchTouchEvent(MotionEvent ev)
+分发--&gt;处理点击时间的分发
+
+onInterceptTouchEvent(MotionEvent ev)
+拦截--&gt;确定当前View是否拦截事件
+
+onTouchEvent(MotionEvent ev)
+点击--&gt;处理事件
+</code></pre><p>3.2 三者关系</p>
+<pre><code>dispatchTouchEvent(MotionEvent ev){
+  boolean consume = false;
+  if(onInterceptTouchEvent(MotionEvent ev)){
+    consume = onTouchEvent(MotionEvent ev)
+  }else{
+    consume = child.dispatchTouchEvent(MotionEvent ev);
+  }
+  return consume;
+}
+
+当前View调用onDispatchTouchEvent(MotionEvent ev)分发事件，然后调用onInterceptTouchEvent(MotionEvent ev),如果返回true，说明当前View要消费事件，则会调用当前View的OnTouchEvent(MotionEvent ev)方法处理事件。否则则交给子View处理，如果子View处理，则消费掉，如果子View不消费，返回false,交给更上级处理。
+</code></pre><p>3.3 一些问题与注意事项</p>
+<pre><code>3.3.1 Activity、Window、View三者事件传递关系
+
+  Activity--&gt;Window--&gt;View
+
+3.3.2 OnTouchEvent(MotionEvent ev)与OnTouchListener(MotionEvent ev)的优先级
+
+  如果设置了OnTouchListener(MotionEvent ev)并返回true，则不会调用OnTouchEvent(MotionEvent ev)，所以OnTouchListener(MotionEvent ev)优先级更高
+
+3.3.3
+</code></pre><h5 id="4-源码分析"><a href="#4-源码分析" class="headerlink" title="4 源码分析"></a>4 源码分析</h5><p>4.1 点击事件传递顺序</p>
 <p>  Activity–&gt;Window–&gt;View 由外到内</p>
 <p>  4.1.1 Activity事件处理</p>
    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">    if (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">        onUserInteraction();</span><br><span class="line">    &#125;</span><br><span class="line">    if (getWindow().superDispatchTouchEvent(ev)) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -457,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -504,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#View的事件体系"><span class="nav-number">1.</span> <span class="nav-text">View的事件体系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-基础知识"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1-View的定义"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">1.1 View的定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2-View的位置参数"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">1.2 View的位置参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-MotionEvent"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">1.3 MotionEvent</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-4-TouchSlop"><span class="nav-number">1.0.0.1.4.</span> <span class="nav-text">1.4 TouchSlop</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-View的滑动"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2. View的滑动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-View事件分发机制"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3. View事件分发机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-源码分析"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4 源码分析</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章：Activity的生命周期和启动模式"><span class="nav-number">1.</span> <span class="nav-text">第一章：Activity的生命周期和启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-生命周期"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-正常情况下"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1.1 正常情况下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-异常情况下"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">1.2 异常情况下</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动模式"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 启动模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View的事件体系"><span class="nav-number">2.</span> <span class="nav-text">View的事件体系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-基础知识"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1-View的定义"><span class="nav-number">2.0.0.1.1.</span> <span class="nav-text">1.1 View的定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2-View的位置参数"><span class="nav-number">2.0.0.1.2.</span> <span class="nav-text">1.2 View的位置参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-MotionEvent"><span class="nav-number">2.0.0.1.3.</span> <span class="nav-text">1.3 MotionEvent</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-4-TouchSlop"><span class="nav-number">2.0.0.1.4.</span> <span class="nav-text">1.4 TouchSlop</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-View的滑动"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2. View的滑动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-View事件分发机制"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3. View事件分发机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-源码分析"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">4 源码分析</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
