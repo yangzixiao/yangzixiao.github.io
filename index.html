@@ -325,6 +325,31 @@
 &lt;item name=&quot;android:windowBackground&quot;&gt;@drawable/ic_splash&lt;/item&gt;
 or
 &lt;item name=&quot;android:windowBackground&quot;&gt;@color/colorTransparent&lt;/item&gt;
+</code></pre><h5 id="设置menu样式"><a href="#设置menu样式" class="headerlink" title="设置menu样式"></a>设置menu样式</h5><pre><code>把下面主题应用到Toolbar上
+
+&lt;style name=&quot;popMenu_under_actionBar&quot; parent=&quot;@style/ThemeOverlay.AppCompat.Light&quot;&gt;
+    &lt;!-- 是否覆盖锚点，默认为true，即盖住Toolbar --&gt;
+    &lt;item name=&quot;overlapAnchor&quot;&gt;false&lt;/item&gt;
+    &lt;!-- 背景色 --&gt;
+    &lt;item name=&quot;android:background&quot;&gt;@color/colorAccent&lt;/item&gt;
+    &lt;item name=&quot;android:dropDownWidth&quot;&gt;wrap_content&lt;/item&gt;
+    &lt;!--&lt;item name=&quot;android:layout_marginRight&quot;&gt;5dp&lt;/item&gt;--&gt;
+    &lt;!--&amp;lt;!&amp;ndash; 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar &amp;ndash;&amp;gt;--&gt;
+    &lt;!--&lt;item name=&quot;android:dropDownHorizontalOffset&quot;&gt;10dp&lt;/item&gt;--&gt;
+    &lt;!--&lt;item name=&quot;android:dropDownVerticalOffset&quot;&gt;10dp&lt;/item&gt;--&gt;
+    &lt;!-- 字体颜色 --&gt;
+    &lt;item name=&quot;android:textColor&quot;&gt;@color/colorBlack333230&lt;/item&gt;
+    &lt;!-- 字体大小 --&gt;
+    &lt;item name=&quot;android:textSize&quot;&gt;16sp&lt;/item&gt;
+    &lt;!--&lt;item name=&quot;android:tint&quot;&gt;@color/colorTitleBlack&lt;/item&gt;--&gt;
+    &lt;!--修改Menu右上角三个点图标--&gt;
+    &lt;item name=&quot;android:actionOverflowButtonStyle&quot;&gt;@style/OverflowStyle&lt;/item&gt;
+&lt;/style&gt;
+
+ &lt;!--修改Menu右上角三个点图标--&gt;
+ &lt;style name=&quot;OverflowStyle&quot; parent=&quot;Widget.AppCompat.ActionButton.Overflow&quot;&gt;
+     &lt;item name=&quot;android:src&quot;&gt;@drawable/ic_add&lt;/item&gt;
+ &lt;/style&gt;
 </code></pre>
           
         
